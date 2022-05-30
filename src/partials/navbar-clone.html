@@ -1,0 +1,30 @@
+<nav x-data="initNavbar()"  x-on:scroll.window="scroll()" id="navbar-clone" class="navbar is-fresh is-transparent" role="navigation" aria-label="main navigation" :class="{
+        'is-active': scrolled,
+        '': !scrolled
+    }">
+    <div class="container">
+        <div class="navbar-brand">
+           <a class="navbar-item" href="https://obofoundry.org/">
+               <img src="img/logo/foundrylogo.png" alt="" width="35" height="28">
+           </a>
+
+        </div>
+
+        <div class="navbar-end">
+            <a href="https://github.com/obophenotype/cell-ontology" target="_blank" class="navbar-item is-secondary">
+                GitHub
+            </a>
+            <a href="https://obofoundry.org/ontology/cl.html" target="_blank" class="navbar-item is-secondary">
+                Foundry Page
+            </a>
+            <a href="https://obophenotype.github.io/cell-ontology/contributing/" target="_blank" class="navbar-item is-secondary">
+                Contribute
+            </a>
+            <a href="index.html#ols_search" class="navbar-item">
+                <span class="button signup-button rounded secondary-btn raised">
+                        Browse
+                    </span>
+                </a>
+            </div>
+        </div>
+</nav>
