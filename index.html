@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>The Cell Ontology</title>
+
+    <link rel="icon" type="image/png" href="img/favicon.png" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/app.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+</head>
+
+<body>
+
+    <div id="pageloader" class="pageloader"></div>
+    <div id="infraloader" class="infraloader is-active"></div>    
+    <section class="hero is-fullheight is-default is-bold">
+    
+        <nav x-data="initNavbar()" class="navbar is-fresh is-transparent no-shadow" role="navigation"
+            aria-label="main navigation">
+            <div class="container">
+                <div class="navbar-brand">
+                   <a class="navbar-item" href="https://obofoundry.org/">
+                       <img src="img/logo/foundrylogo.png" alt="" width="35" height="28">
+                   </a>
+        
+                </div>
+        
+                <div class="navbar-end">
+                    <a href="https://github.com/obophenotype/cell-ontology" target="_blank" class="navbar-item is-secondary">
+                        GitHub
+                    </a>
+                    <a href="https://obofoundry.org/ontology/cl.html" target="_blank" class="navbar-item is-secondary">
+                        Foundry Page
+                    </a>
+                    <a href="https://obophenotype.github.io/cell-ontology/contributing/" target="_blank" class="navbar-item is-secondary">
+                        Contribute
+                    </a>
+                    <a href="index.html#ols_search" class="navbar-item">
+                        <span class="button signup-button rounded secondary-btn raised">
+                                Browse
+                            </span>
+                        </a>
+                    </div>
+                </div>
+        
+        </nav>
+    
+        <nav x-data="initNavbar()"  x-on:scroll.window="scroll()" id="navbar-clone" class="navbar is-fresh is-transparent" role="navigation" aria-label="main navigation" :class="{
+                'is-active': scrolled,
+                '': !scrolled
+            }">
+            <div class="container">
+                <div class="navbar-brand">
+                   <a class="navbar-item" href="https://obofoundry.org/">
+                       <img src="img/logo/foundrylogo.png" alt="" width="35" height="28">
+                   </a>
+        
+                </div>
+        
+                <div class="navbar-end">
+                    <a href="https://github.com/obophenotype/cell-ontology" target="_blank" class="navbar-item is-secondary">
+                        GitHub
+                    </a>
+                    <a href="https://obofoundry.org/ontology/cl.html" target="_blank" class="navbar-item is-secondary">
+                        Foundry Page
+                    </a>
+                    <a href="https://obophenotype.github.io/cell-ontology/contributing/" target="_blank" class="navbar-item is-secondary">
+                        Contribute
+                    </a>
+                    <a href="index.html#ols_search" class="navbar-item">
+                        <span class="button signup-button rounded secondary-btn raised">
+                                Browse
+                            </span>
+                        </a>
+                    </div>
+                </div>
+        </nav>
+    
+        <div class="hero-body">
+            <div class="container">
+                <div class="columns is-vcentered">
+                    <div class="column is-5 is-offset-1 landing-caption">
+                        <h1 class="title is-1 is-bold is-spaced">
+                            The Cell Ontology
+                        </h1>
+                        <h2 class="subtitle is-5 is-muted">The Cell Ontology (CL) is an OBO Foundry ontology covering the domain of canonical, natural biological cell types. </h2>
+                        <div class="button-wrap">
+                            <a class="button cta is-rounded primary-btn raised" href="index.html#ols_search">
+                                Browse
+                            </a>
+                            <a class="button cta is-rounded" href="https://github.com/obophenotype/cell-ontology/raw/master/cl.owl" download target="_blank">
+                                Download
+                            </a>
+                        </div>
+                    </div>
+                    <div class="column is-5">
+                       <figure class="image is-4by4">
+                           <img src="img/illustrations/cl-logo.jpeg" alt="Description">
+                        </figure>
+                    </div>
+    
+                </div>
+            </div>
+        </div>
+    
+        <div class="hero-foot mb-20">
+            <div class="container">
+                <div class="tabs is-centered">
+                    <ul>
+                      <li><a><img class="partner-logo" src="img/logo/clients/monarch.png"></a></li>
+                      <li><a><img class="partner-logo" src="img/logo/clients/biccn.svg"></a></li>
+                      <li><a><img class="partner-logo" src="img/logo/clients/ebi.png"></a></li>
+                      <li><a><img class="partner-logo" src="img/logo/clients/hubmap.png"></a></li>
+                      <li><a><img class="partner-logo" src="img/logo/clients/hca.png"></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <a name='ols_search'></a>
+    <section class="section section-feature-grey is-medium">
+        <div class="container" style="margin-top: -1.25rem;">
+            <div class="title-wrapper has-text-centered">
+                <h2 class="title is-2">Browse The Cell Ontology </h2>
+                <h3 class="subtitle is-5 is-muted">powered by the Ontology Lookup Service (OLS)</h3>
+                <div class="divider is-centered"></div>
+            </div>
+            <div class="content-wrapper is-centered">
+              <div class="columns is-vcentered side-feature">
+                <div class="column is-offset-3">
+                  <form id="local-search" name="local-search" action="https://www.ebi.ac.uk/ols/search" method="get">
+                      <fieldset>
+                          <label>
+                              <input style="font-weight: normal" size="45" type="text" name="q" data-olswidget="select" data-olsontology="cl" data-selectpath="https://www.ebi.ac.uk/ols/" olstype="" id="local-searchbox" placeholder="Enter the term you are looking for" class="ac_input input is-medium">
+                              </input>
+                          </label>
+                          <input type="submit" value="Search" class="submit button cta is-rounded"></input>
+                      </fieldset>
+                    </form>
+                  </div>
+              </div>
+              <div class="columns is-vcentered side-feature mt-60"></div>
+              <div class="columns is-vcentered side-feature mt-60"></div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="section is-medium">
+        <div class="container">
+            <div class="title-wrapper has-text-centered">
+                <h2 class="title is-2">Community Driven</h2>
+                <h3 class="subtitle is-5 is-muted">built for and by the community</h3>
+                <div class="divider is-centered"></div>
+            </div>
+    
+            <div class="columns is-vcentered side-feature mt-60">
+                <div class="column is-4 is-offset-2">
+                    <h3 class="title is-3 mb-10 is-title-reveal"> FAIR principles </h3>
+                    <p class="subtitle is-5 is-muted">The Cell Ontology is built on FAIR principles and interoperates well with other ontologies. It works in concert with the multi-species anatomy ontology UBERON, and is used as the reference ontology for cell types in the Gene ontology (GO).</p>
+                </div>
+                <div class="column is-5">
+                    <img src="img/illustrations/features/fair.png" alt="">
+                </div>
+            </div>
+    
+            <div class="columns is-vcentered side-feature mt-60">
+                <div class="column is-5 is-offset-1">
+                    <img src="img/illustrations/features/tracker.png" alt="">
+                </div>
+                <div class="column is-4 is-offset-1">
+                    <h3 class="title is-3 mb-10 is-title-reveal">Active Community</h3>
+                    <p class="subtitle is-5 is-muted">The Cell Ontology actively engages the community, editors from multiple projects embeded in the team, active and responsive discussions in the issue tracker, and constant improvements both in content and technical development of the ontology.</p>
+                </div>
+            </div>
+        </div>
+    
+        <div class="columns is-vcentered side-feature mt-60">
+            <div class="column is-4 is-offset-2">
+                <h3 class="title is-3 mb-10 is-title-reveal"> Ontology Tools Integrated </h3>
+                <p class="subtitle is-5 is-muted">The Cell Ontology is also integrated into tools used by the community such as ubergraph, and is uploaded into popular ontology browsers such as the Ontology Lookup Service (OLS) and Ontobee.</p>
+            </div>
+            <div class="column is-5">
+                <img src="img/illustrations/features/ols.png" alt="">
+            </div>
+      </div>
+    </section>
+    
+    <section class="section section-feature-grey is-medium">
+        <div class="container">
+    
+            <div class="columns is-vcentered app-side">
+                <div class="column is-5 is-offset-1">
+                    <h3 class="title is-3 is-spaced is-title-reveal">Widely Compatible</h3>
+                    <p class="subtitle is-5 is-muted">The cell ontology is released in multiple forms to be compatible with releases done in owl, obo, and json format. It also comes in multiple variants including full (all imports merged in, and classified using a reasoner), base (only axioms belonging to the ontology), and simple (a subset of the ontology useful for tool development), all of which are openly accessible in our GitHub page</p>
+                </div>
+                <div class="column is-10">
+                    <div class="has-text-centered">
+                        <img class="pushed-image" src="img/illustrations/mockups/cl-protege.png">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="section is-medium">
+        <div class="container">
+            <div class="title-wrapper has-text-centered">
+                <h2 class="title is-2">Applications</h2>
+                <h3 class="subtitle is-5 is-muted">of the cell ontology</h3>
+                <div class="divider is-centered"></div>
+            </div>
+    
+            <div class="content-wrapper">
+                <div class="columns is-multiline icon-list">
+                    <div class="column is-3">
+                        <div class="feature-icon has-text-centered">
+                            <div class="icon-wrap is-icon-reveal">
+                              <a href="https://biccn.org/">
+                                <img src="img/applications/biccn-logo.webp">
+                              </a>
+                            </div>
+                            <h4>BICCN</h4>
+                            <p>Annotation</p>
+                        </div>
+                    </div>
+                    <div class="column is-3">
+                        <div class="feature-icon has-text-centered">
+                            <div class="icon-wrap is-icon-reveal">
+                              <a href="https://hubmapconsortium.org/">
+                                <img src="img/applications/hubmap.jpeg">
+                              </a>
+                            </div>
+                            <h4>HubMap</h4>
+                            <p>Annotation</p>
+                        </div>
+                    </div>
+                    <div class="column is-3">
+                        <div class="feature-icon has-text-centered">
+                            <div class="icon-wrap is-icon-reveal">
+                              <a href="https://fantom.gsc.riken.jp/5/">
+                                <img src="img/applications/fantom.png">
+                            </div>
+                            <h4>FANTOM5</h4>
+                            <p>Annotation</p>
+                        </div>
+                    </div>
+                    <div class="column is-3">
+                        <div class="feature-icon has-text-centered">
+                            <div class="icon-wrap is-icon-reveal">
+                              <a href="https://www.ebi.ac.uk/gxa/sc/home">
+                                <img src="img/applications/sc_atlas_logo.webp">
+                            </div>
+                            <h4>Single Cell Expression Atlas</h4>
+                            <p>Annotation</p>
+                        </div>
+                    </div>
+                    <div class="column is-3">
+                        <div class="feature-icon has-text-centered">
+                            <div class="icon-wrap is-icon-reveal">
+                              <a href="https://www.humancellatlas.org/">
+                                <img src="img/applications/HCA.png">
+                            </div>
+                            <h4>Human Cell Atlas</h4>
+                            <p>Annotation</p>
+                        </div>
+                    </div>
+                    <div class="column is-3">
+                        <div class="feature-icon has-text-centered">
+                            <div class="icon-wrap is-icon-reveal">
+                              <a href="https://cellxgene.cziscience.com/">
+                                <img src="img/applications/cellxgene.png">
+                            </div>
+                            <h4>CellXGene</h4>
+                            <p>Annotation</p>
+                        </div>
+                    </div>
+                    <div class="column is-3">
+                        <div class="feature-icon has-text-centered">
+                            <div class="icon-wrap is-icon-reveal">
+                              <a href="https://www.encodeproject.org/">
+                                <img src="img/applications/encode.png"></a>
+                            </div>
+                            <h4>ENCODE</h4>
+                            <p>Annotation</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="section is-medium  has-background-image" data-background="https://source.unsplash.com/g30P1zcOzXo/1600x900" data-color="#4FC1EA" data-color-opacity=".6">
+        <div class="overlay"></div>
+        <div class="container">
+    
+            <div class="title-wrapper has-text-centered">
+                <h2 class="title is-2 light-text is-spaced">Used Widely by the Community</h2>
+                <h3 class="subtitle is-5 light-text">Examples of Integration</h3>
+            </div>
+    
+            <div class="content-wrapper">
+                <div class="columns is-vcentered">
+                    <div class="column is-4">
+                        <figure class="testimonial">
+                            <blockquote>
+                                The Brain Data Standards Ontology (BDSO) is a data-driven extension of the Cell Ontology (CL) that supports the navigation, search, and organisation of information about cell types through an integrated web portal, and also functions as an independent ontology for use in cell-type annotation.
+                            </blockquote>
+                            <div class="author">
+                                <a href="https://doi.org/10.1101/2021.10.10.463703">
+                                <img src="img/applications/biccn-logo.webp" alt=""/>
+                                <h5>Tan et al.</h5><span>DOI:10.1101/2021.10.10.463703</span></a>
+                            </div>
+                        </figure>
+                    </div>
+                    <div class="column is-4">
+                        <figure class="testimonial">
+                            <blockquote>
+                                Here, we present OnClass, an algorithm and accompanying software for automatically classifying cells into cell types that are part of the controlled vocabulary that forms the Cell Ontology.
+                            </blockquote>
+                            <div class="author">
+                                <a href="https://doi.org/10.1038/s41467-021-25725-x">
+                                <img src="img/applications/czi.svg" alt=""/>
+                                <h5>Wang et al.</h5><span>Nat Commun 12, 5556 (2021)</span></a>
+                            </div>
+                        </figure>
+                    </div>
+                    <div class="column is-4">
+                        <figure class="testimonial">
+                            <blockquote>
+                                We worked with developers of external ontologies such as Uberon, the Cell Ontology, and the Fungal Anatomy Ontology to include taxon constraints within these ontologies, and to have these inherited in GO. For example, the cell ontology now constrains the term ‘leukocyte’ to vertebrates, and consequently terms in GO such as monocyte differentiation are inferred to be constrained to vertebrates.
+                            </blockquote>
+                            <div class="author">
+                                <a href="https://doi.org/10.1038/s41467-021-25725-x">
+                                <img src="img/applications/go.png" alt=""/>
+                                <h5>Gene Ontology Consortium</h5><span>Nucleic Acids Res 49(D1):D325–D334 (2021)</span></a>
+                            </div>
+                        </figure>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="section is-medium">
+        <div class="container">
+            <div class="title-wrapper has-text-centered">
+                <h2 class="title is-2">Cite the Cell Ontology</h2>
+                <h3 class="subtitle is-5 is-muted">Please cite our papers if you use the Cell Ontology</h3>
+                <div class="divider is-centered"></div>
+            </div>
+            <div class="columns is-vcentered side-feature mt-60">
+                <div class="column is-10 is-offset-1">
+                    <h3 class="title is-3 mb-10 is-title-reveal"> Latest Update Paper </h3>
+                    <a href="https://pubmed.ncbi.nlm.nih.gov/27377652/">
+                    <p class="subtitle is-5 is-muted">The Cell Ontology 2016: enhanced content, modularization, and ontology interoperability. Alexander D Diehl et al., J Biomed Semantics. 2016 Jul 4;7(1):44. PMID:27377652, PMCID:PMC4932724, DOI:10.1186/s13326-016-0088-7</p></a>
+                </div>
+            </div>
+            <div class="columns is-vcentered side-feature mt-60">
+                <div class="column is-10 is-offset-1">
+                    <h3 class="title is-3 mb-10 is-title-reveal"> Previous Papers </h3>
+                    <a href="https://pubmed.ncbi.nlm.nih.gov/21208450/">
+                    <p class="subtitle is-5 is-muted">Logical development of the cell ontology. Terrence F Meehan et al., BMC Bioinformatics. 2011 Jan 5;12:6. PMID:21208450, PMCID:PMC3024222, DOI:10.1186/1471-2105-12-6</p></a>
+                </div>
+            </div>
+            <div class="columns is-vcentered side-feature mt-60">
+                <div class="column is-10 is-offset-1">
+                    <h3 class="title is-3 mb-10 is-title-reveal"> Original Paper </h3>
+                    <a href="https://pubmed.ncbi.nlm.nih.gov/15693950/">
+                    <p class="subtitle is-5 is-muted">An ontology for cell types. Jonathan Bard et al., Genome Biol. 2005;6(2):R21. PMID:15693950, PMCID:PMC551541, DOI:10.1186/gb-2005-6-2-r21</p></a>
+                </div>
+            </div>
+    
+    </section>
+    
+    <section class="section section-light-grey is-medium">
+        <div class="container">
+            <div class="title-wrapper has-text-centered">
+                <h2 class="title is-2 is-spaced">Contact us </h2>
+                <h3 class="subtitle is-5 is-muted">We'd love to hear from You</h3>
+                <div class="divider is-centered"></div>
+            </div>
+    
+            <div class="content-wrapper">
+                <div class="columns">
+                    <div class="column is-one-third">
+                        <div class="feature-card is-bordered has-text-centered is-feature-reveal">
+                            <div class="card-title">
+                                <h4>GitHub Tracker</h4>
+                            </div>
+                            <div class="card-icon">
+                                <img src="img/icons/github.svg">
+                            </div>
+                            <div class="card-text">
+                                <p>The preferred point of contact for the Cell Ontology is the GitHub Issue Tracker.</p>
+                            </div>
+                            <div class="card-action">
+                                <a href="https://github.com/obophenotype/cell-ontology/issues/new/choose" class="button btn-align-md primary-btn raised">Open New Issue</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div class="feature-card is-bordered has-text-centered is-feature-reveal">
+                            <div class="card-title">
+                                <h4>Slack Channel</h4>
+                            </div>
+                            <div class="card-icon">
+                                <img src="img/icons/slack.svg">
+                            </div>
+                            <div class="card-text">
+                                <p>The Cell Ontology also has a Slack Channel</p>
+                            </div>
+                            <div class="card-action">
+                                <a href="https://anatomy-and-cell-onto.slack.com/" class="button btn-align-md primary-btn raised">Join Slack Channel</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div class="feature-card is-bordered has-text-centered is-feature-reveal">
+                            <div class="card-title">
+                                <h4>Direct Contact</h4>
+                            </div>
+                            <div class="card-icon">
+                                <img src="img/illustrations/cl-logo.jpeg">
+                            </div>
+                            <div class="card-text">
+                                <p>You can also directly contact an editor from the list below</p>
+                            </div>
+                            <div class="card-action">
+                                <a href="http://obophenotype.github.io/uberon/team/" class="button btn-align-md primary-btn raised">View List</a>
+                            </div>
+                        </div>
+    
+    </section>
+    
+    
+    
+    
+    <div id="auth-modal" class="modal">
+        <div class="modal-background modal-dismiss"></div>
+        <div class="modal-content">
+            <div class="flex-card auth-card">
+                <div class="tabs-wrapper">
+                    <div class="tabs">
+                        <ul>
+                            <li class="is-active" data-tab="login-tab"><a>Login</a></li>
+                            <li data-tab="register-tab"><a>Register</a></li>
+                        </ul>
+                    </div>
+                    <div id="login-tab" class="tab-content is-active">
+                        <div class="field">
+                            <label>Username</label>
+                            <div class="control">
+                                <input type="text" class="input is-medium" placeholder="Enter username">
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label>Password</label>
+                            <div class="control">
+                                <input type="password" class="input is-medium" placeholder="Enter password">
+                            </div>
+                        </div>
+    
+                        <a class="button is-fullwidth secondary-btn is-rounded raised">Log in</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button class="modal-close is-large modal-dismiss" aria-label="close"></button>
+    </div>
+    
+    <footer class="footer footer-dark">
+        <div class="container">
+            <div class="columns">
+                <div class="column">
+                    <div class="footer-logo">
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="footer-column">
+                        <div class="footer-header">
+                            <h3>Browsers</h3>
+                        </div>
+                        <ul class="link-list">
+                            <li><a href="https://www.ebi.ac.uk/ols/ontologies/cl">Ontology Lookup Service</a></li>
+                            <li><a href="https://www.ontobee.org/ontology/CL">Ontobee</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="footer-column">
+                        <div class="footer-header">
+                            <h3>Docs</h3>
+                        </div>
+                        <ul class="link-list">
+                            <li><a href="https://obophenotype.github.io/cell-ontology/">Cell Ontology Documents</a></li>
+                            <li><a href="https://oboacademy.github.io/obook/">OBO Academy OBOOK</a></li>
+                            <li><a href="https://ontology-development-kit.readthedocs.io/en/latest/">Ontology Development Kit Guide</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="footer-column">
+                        <div class="footer-header">
+                            <h3>Blogroll</h3>
+                        </div>
+                        <ul class="link-list">
+                            <li><a href="#">Upcoming</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="footer-column">
+                        <div class="footer-header">
+                            <h3>Socials</h3>
+                            <nav class="level is-mobile">
+                                <div class="level-left">
+                                    <a class="level-item" href="https://github.com/obophenotype/cell-ontology">
+                                        <span class="icon">
+                                            <ion-icon name="logo-github" size="large"></ion-icon>
+                                        </span>
+                                    </a>
+                                    <a class="level-item" href="https://twitter.com/OBOFoundry">
+                                        <span class="icon">
+                                            <ion-icon name="logo-twitter" size="large"></ion-icon>
+                                        </span>
+                                    </a>
+                                </div>
+                            </nav>
+    
+                            <a href="https://bulma.io" target="_blank">
+                                <img src="img/logo/made-with-bulma.png" alt="Made with Bulma" width="128" height="24">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Back To Top Button -->
+    <div x-data="initBackToTop()" x-on:scroll.window="scroll($event)" @click="goTop($event)" id="backtotop"><a href="javascript:" :class="{
+        'visible': scrolled,
+        '': !scrolled
+    }"></a></div>    <div x-data="initSidebar()" class="sidebar" :class="{
+            'is-active': $store.app.isSiderbarOpen,
+            '': !$store.app.isSiderbarOpen
+        }">
+        <div class="sidebar-header">
+            <img src="/img/logo/fresh-square.svg">
+            <a @click="closeSidebar()" class="sidebar-close" href="javascript:void(0);"><i data-feather="x"></i></a>
+        </div>
+        <div class="inner">
+            <ul class="sidebar-menu">
+                <li><span class="nav-section-title"></span></li>
+                <li @click="openSidebarMenu($event)" data-menu="sidebar-menu-1" class="have-children" :class="{
+                        'active': openedMenu === 'sidebar-menu-1',
+                        '': openedMenu != 'sidebar-menu-1'
+                    }">
+                <a href="#">
+                    <span class="material-icons">apps</span>
+                    <span>Apps</span>
+                </a>
+                    <ul x-show.transition="openedMenu === 'sidebar-menu-1'">
+                        <li><a href="#">Dashboard</a></li>
+                        <li><a href="#">Account</a></li>
+                        <li><a href="#">Documents</a></li>
+                    </ul>
+                </li>
+                <li @click="openSidebarMenu($event)" data-menu="sidebar-menu-2" class="have-children" :class="{
+                        'active': openedMenu === 'sidebar-menu-2',
+                        '': openedMenu != 'sidebar-menu-2'
+                    }">
+                    <a href="#">
+                        <span class="material-icons">duo</span>
+                        <span>Messages</span>
+                    </a>
+                    <ul x-show.transition="openedMenu === 'sidebar-menu-2'">
+                        <li><a href="#">Inbox</a></li>
+                        <li><a href="#">Compose</a></li>
+                        <li><a href="#">Video</a></li>
+                    </ul>
+                </li>
+                <li @click="openSidebarMenu($event)" data-menu="sidebar-menu-3" class="have-children" :class="{
+                        'active': openedMenu === 'sidebar-menu-3',
+                        '': openedMenu != 'sidebar-menu-3'
+                    }">
+                    <a href="#">
+                        <span class="material-icons">insert_photo</span>
+                        <span>Media</span>
+                    </a>
+                    <ul x-show.transition="openedMenu === 'sidebar-menu-3'">
+                        <li><a href="#">Library</a></li>
+                        <li><a href="#">Upload</a></li>
+                    </ul>
+                </li>
+                <li @click="openSidebarMenu($event)" data-menu="sidebar-menu-4" class="have-children" :class="{
+                        'active': openedMenu === 'sidebar-menu-4',
+                        '': openedMenu != 'sidebar-menu-4'
+                    }">
+                    <a href="#">
+                        <span class="material-icons">policy</span>
+                        <span>Settings</span>
+                    </a>
+                    <ul x-show.transition="openedMenu === 'sidebar-menu-4'">
+                        <li><a href="#">User settings</a></li>
+                        <li><a href="#">App settings</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <script type="module" src="https://unpkg.com/ionicons@5.0.0/dist/ionicons/ionicons.esm.js"></script>
+    <script src="./js/bundle.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/corejs-typeahead/0.11.1/typeahead.bundle.min.js"></script>
+
+    <script>
+    require=function t(e,o,i){function a(r,s){if(!o[r]){if(!e[r]){var l="function"==typeof require&&require;if(!s&&l)return l(r,!0);if(n)return n(r,!0);var u=new Error("Cannot find module '"+r+"'");throw u.code="MODULE_NOT_FOUND",u}var d=o[r]={exports:{}};e[r][0].call(d.exports,function(t){var o=e[r][1][t];return a(o?o:t)},d,d.exports,t,e,o,i)}return o[r].exports}for(var n="function"==typeof require&&require,r=0;r<i.length;r++)a(i[r]);return a}({"ols-autocomplete":[function(t,e,o){e.exports=autocomplete=function(){function t(t){var e="terms";return"property"==t?e="properties":"individual"==t?e="individuals":"ontology"==t&&(e="ontology"),e}function e(t,e,o,i,a){if(void 0!=o&&void 0!=i){var n=encodeURIComponent(i);window.location.href=t+"ontologies/"+e+"/"+o+"?iri="+n}else window.location.href=t+"ontologies/"+suggestion_ontoloy}function o(e,o,i,a){e.bind("typeahead:select",function(e,i){if(void 0!=i.data){var a=t(i.data.type);"ontology"==a?options.action.call(this,o,i.data.ontology,a,i.data.iri,i.data,i.value):options.action.call(this,o,i.data.ontology,a,i.data.iri,i.data,i.value)}else e.target.form.submit()}).typeahead({hint:!1,highlight:!0,minLength:2,limit:4,async:!0},i)}function i(e){return{header:'<hr/><h5 style="text-align: center">'+e+"</h5>",suggestion:function(e){var o=e.data.label,i="";""!=e.data.synonym&&(o=e.data.synonym,i="<div class='sub-text'>synonym for "+e.value+"</div>");var a="<div class='ontology-source'>"+e.data.prefix+"</div>",n=t(e.data.type);return"ontology"!=n&&(a+="&nbsp;<div class='term-source'>"+e.data.shortForm+"</div>"),"<div style='width: 100%; display: table;'> <div style='display: table-row'><div  style='display: table-cell;' class='ontology-suggest'><div class='suggestion-value'>"+o+"</div>"+i+"</div><div style='vertical-align:middle; text-align: right; width:60px; display: table-cell;'>"+a+"</div></div></div>"},footer:Handlebars.compile('<hr/><div onclick="jQuery(this).closest(\'form\').submit()" style="text-align: right;" class="tt-suggestion tt-selectable">Search OLS for <b></b></div>')}}function a(t,e,o){var i="";return e&&(i="&ontology="+e),o&&(i+="&type="+o),new Bloodhound({datumTokenizer:Bloodhound.tokenizers.whitespace,queryTokenizer:Bloodhound.tokenizers.whitespace,identify:function(t){return t.id},remote:{url:t+"api/select?q=%QUERY"+i,wildcard:"%QUERY",transform:function(t){return r(t)}}})}function n(t,e){var o="";return e&&(o="&ontology="+e),new Bloodhound({datumTokenizer:Bloodhound.tokenizers.whitespace,queryTokenizer:Bloodhound.tokenizers.whitespace,remote:{url:t+"api/suggest?q=%QUERY"+o,wildcard:"%QUERY",transform:function(t){return jQuery.map(t.response.docs,function(t){return{value:t.autosuggest}})}}})}function r(t){var e=t.responseHeader.params.q;return jQuery.map(t.response.docs,function(o){var i=o.id,a=o.label,n="",r=!0;void 0!=t.highlighting[i].label_autosuggest?(a=t.highlighting[i].label_autosuggest[0],r=!1):void 0!=t.highlighting[i].label&&(a=t.highlighting[i].label[0],r=!1),r&&(void 0!=t.highlighting[i].synonym_autosuggest?n=t.highlighting[i].synonym_autosuggest[0]:void 0!=t.highlighting[i].synonym&&(n=t.highlighting[i].synonym[0]));var s=o.obo_id;return void 0==s&&(s=o.short_form),{id:i,value:o.label,data:{ontology:o.ontology_name,prefix:o.ontology_prefix,iri:o.iri,label:a,synonym:n,shortForm:s,type:o.type},query:e}})}options={action:e},autocomplete.prototype.start=function(t){options=jQuery.extend(!0,{},options,t),jQuery("input[data-olswidget='multisearch']").each(function(){var t=jQuery(this).data("selectpath")?jQuery(this).data("selectpath"):"",e=jQuery(this).data("olsontology")?jQuery(this).data("olsontology"):"",r=jQuery(this).data("olstype")?jQuery(this).data("olstype"):"",s=jQuery(this).data("suggest-header")?jQuery(this).data("suggest-header"):"Jump to",l=[{name:"suggestion",source:n(t,e),display:"value"},{name:"selection",source:a(t,e,r),display:"value",templates:i(s)}];o(jQuery(this),t,l)}),jQuery("input[data-olswidget='select']").each(function(){var t=jQuery(this).data("selectpath")?jQuery(this).data("selectpath"):"",e=jQuery(this).data("olsontology")?jQuery(this).data("olsontology"):"",n=jQuery(this).data("olstype")?jQuery(this).data("olstype"):"",r=jQuery(this).data("suggest-header")?jQuery(this).data("suggest-header"):"Jump to",s=[{name:"selection",source:a(t,e,n),display:"value",templates:i(r)}];o(jQuery(this),t,s)})}}},{}]},{},[]);
+
+    function onSubmitClick(){
+    alert("We do something else than ask OLS. The action of this submit button is overwritten.")
+    }
+
+    $(document).ready(function() {
+      var app = require("ols-autocomplete");
+      var instance = new app();
+      options={action : function(relativePath, suggestion_ontology, type, iri, data){
+        console.log("In overwritten function")
+        console.log("Relative Path: "+relativePath)
+        console.log("Suggested Ontology: "+suggestion_ontology)
+        console.log("Type (optional): "+type)
+        console.log("iri (optional): "+iri)
+        console.log("Whole data element (optional+new): ")
+        console.log(data)
+        if(iri && type) {
+          if(type == "ontology"){
+            window.open(relativePath + "ontologies/" + suggestion_ontology, '_blank').focus();
+          }else {
+            window.open(relativePath + "ontologies/" + suggestion_ontology + "/" + type + "?iri=" + encodeURIComponent(iri), '_blank').focus();
+          }
+        }
+      }
+    }
+      instance.start(options)
+    });
+    </script>
+
+</body>
+
+</html>
