@@ -6502,7 +6502,7 @@ require = function t(e, o, i) {
             return t.id;
           },
           remote: {
-            url: t + "api/select?q=%QUERY" + i,
+            url: t + "api/select?local=true&q=%QUERY" + i,
             wildcard: "%QUERY",
             transform: function transform(t) {
               return r(t);
